@@ -3,18 +3,22 @@ from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen
 import csv
 
-with open("data.csv", 'w') as file: #open csv file and use dictwriter to write column headers
+#open csv file and use dictwriter to write column headers
+with open("data.csv", 'w') as file: 
     fields = ["NAME", "PRICE", "SHIPPING"]
     writer = csv.DictWriter(file, delimiter = ",", fieldnames = fields)
     writer.writeheader()
-    data = {                #initialize dict for scraped data
+
+    #initialize dict for scraped data
+    data = {                
         "NAME" : "NAME",
         "PRICE" : "PRICE",
         "SHIPPING" : "SHIPPING"
         }   
 
     search = input("What do you want to search for?\n")
-    url = f"https://www.newegg.com/global/de-en/p/pl?d={search}" #create url
+    #create url
+    url = f"https://www.newegg.com/global/de-en/p/pl?d={search}" 
 
     #retrieve total number of pages on which the items are displayed
     page = urlopen(url)
@@ -52,6 +56,7 @@ with open("data.csv", 'w') as file: #open csv file and use dictwriter to write c
             print(f"NAME: {name}")
             print(f"PRICE: {price}")
             print(f"SHIPPING: {shipping}\n")
-            writer.writerow(data) #write the dict to the csv file using dictwriter
+            #write the dict to the csv file using dictwriter
+            writer.writerow(data) 
 
 file.close()
