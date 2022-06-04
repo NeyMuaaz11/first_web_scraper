@@ -25,7 +25,7 @@ with open("data.csv", 'w') as file:
     page_html = page.read()
     page_soup = bs(page_html, "html.parser")
     pagination = page_soup.findAll("div",{"class":"list-tool-pagination"})
-    total_pages = int(pagination[0].text[7])
+    total_pages = int(pagination[0].text[7] + pagination[0].text[8])
 
     #loop over all the pages and scrape data
     for i in range(1,total_pages+1):
